@@ -321,54 +321,45 @@
     // ========================================
     const DATA = [
         { 
-            key:'sport', icon:'🏃', floor:2, number:null,
-            name:{ kk:'Дене шынықтыру', ru:'Физическая культура' },
-            text:{ kk:'Мәжіліс залы', ru:'Актовый зал' } 
+            key:'tech', icon:'🔬', number:6,
+            name:{ kk:'Ғылыми-техникалық бағыт', ru:'Научно-техническое направление' } 
         },
         { 
-            key:'nvp_tech', icon:'🎖️', floor:3, number:6,
-            name:{ kk:'Алғашқы әскери және технологиялық дайындық', ru:'Начальная военная и технологическая подготовка' } 
+            key:'tourism', icon:'🧭', number:8,
+            name:{ kk:'Туризм және өлкетану бағыты', ru:'Туристско-краеведческое направление' } 
         },
         { 
-            key:'tech', icon:'🔬', floor:2, number:10,
-            name:{ kk:'Ғылыми техникалық бағыт', ru:'Научно-техническое направление' } 
+            key:'eco_bio', icon:'🌿', number:4,
+            name:{ kk:'Экологиялық-биологиялық бағыт', ru:'Эколого-биологическое направление' } 
         },
         { 
-            key:'art', icon:'🎨', floor:2, number:8,
-            name:{ kk:'Көркем-эстетикалық бағыт', ru:'Художественно-эстетическое направление' } 
+            key:'art', icon:'🎨', number:2,
+            name:{ kk:'Көркемдік-эстетикалық бағыт', ru:'Художественно-эстетическое направление' } 
         },
         { 
-            key:'music', icon:'🎵', floor:2, number:7,
-            name:{ kk:'Музыка бағыты', ru:'Музыкальное направление' } 
+            key:'music', icon:'🎵', number:5,
+            name:{ kk:'Музыкалық бағыт', ru:'Музыкальное направление' } 
         },
         { 
-            key:'management', icon:'📊', floor:2, number:null,
-            name:{ kk:'Басқару менеджмент бағыты', ru:'Направление управленческого менеджмента' },
-            text:{ kk:'Әдістемелік кабинет', ru:'Методический кабинет' } 
+            key:'social_pedagogy', icon:'🧑‍🏫', number:11,
+            name:{ kk:'Әлеуметтік-педагогикалық бағыт', ru:'Социально-педагогическое направление' } 
         },
         { 
-            key:'olympiad_history', icon:'📜', floor:3, number:12,
-            name:{ kk:'Олимпиадалық резервке дайындайтын педагогтер (тарих пәні)', ru:'Педагоги, готовящие олимпиадный резерв (история)' } 
+            key:'humanities', icon:'📚', number:12,
+            name:{ kk:'Гуманитарлық бағыт (тіл курстары)', ru:'Гуманитарное направление (языковые курсы)' } 
         },
         { 
-            key:'olympiad_reserve', icon:'🏅', floor:3, number:11,
-            name:{ kk:'Олимпиадалық резервке дайындайтын педагогтер', ru:'Педагоги, готовящие олимпиадный резерв' } 
+            key:'math_science', icon:'📐', number:13,
+            name:{ kk:'Жаратылыстану-математикалық бағыт (математикалық курстар)', ru:'Естественно-математическое направление (математические курсы)' } 
         },
         { 
-            key:'psy_kindergarten', icon:'🧸', floor:3, number:10,
-            name:{ kk:'Балабақша педагог-психологтары', ru:'Педагоги-психологи детского сада' } 
+            key:'sport', icon:'🏃', number:7,
+            name:{ kk:'Спорт бағыты', ru:'Спортивное направление' } 
         },
         { 
-            key:'psy_school', icon:'🧑‍🏫', floor:3, number:8,
-            name:{ kk:'Педагог-психологтар (мектеп)', ru:'Педагоги-психологи (школа)' } 
-        },
-        { 
-            key:'psy_college', icon:'🎓', floor:3, number:14,
-            name:{ kk:'Педагог-психологтар (колледж)', ru:'Педагоги-психологи (колледж)' } 
-        },
-        { 
-            key:'it', icon:'💻', floor:3, number:9,
-            name:{ kk:'IT-мамандар, информатика', ru:'IT-специалисты, информатика' } 
+            key:'add_edu_directors', icon:'🗂️', number:null,
+            name:{ kk:'Қосымша білім беру директорлары', ru:'Директора дополнительного образования' },
+            text:{ kk:'АКТ залы', ru:'Зал АКТ' } 
         }
     ];
 
@@ -395,14 +386,12 @@
         const container = document.getElementById('cardsGrid');
 
         const cardsHtml = DATA.map((d, index) => {
-            // Форматирование текста локации: "2-қабат, 7-кабинет" или "2-қабат, Мәжіліс залы"
+            // Форматирование текста локации: "6-кабинет" или "АКТ залы"
             let locationText = '';
             if (lang === 'kk') {
-                const roomStr = d.number !== null ? `${d.number}-кабинет` : d.text.kk;
-                locationText = `${d.floor}-қабат, ${roomStr}`;
+                locationText = d.number !== null ? `${d.number}-кабинет` : d.text.kk;
             } else {
-                const roomStr = d.number !== null ? `${d.number} кабинет` : d.text.ru;
-                locationText = `${d.floor} этаж, ${roomStr}`;
+                locationText = d.number !== null ? `Кабинет ${d.number}` : d.text.ru;
             }
 
             const delay = (index * 0.05).toFixed(2);
