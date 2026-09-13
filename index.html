@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Бағыттар мен кабинеттер / Направления и кабинеты</title>
+<title>Үйірмелер мен сыныптар / Кружки и классы</title>
 <style>
     :root{
         --primary:#667eea;
@@ -104,7 +104,7 @@
     /* ---------- CENTERED MAIN CONTENT CONTAINER ---------- */
     .content-container{
         width:100%;
-        max-width:1150px;
+        max-width:1450px;
         margin:0 auto;
         display:flex;
         justify-content:center;
@@ -125,7 +125,7 @@
     /* ---------- CARDS GRID (2 COLUMNS) ---------- */
     .cards-grid{
         display:grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
         gap: 12px 16px;
     }
 
@@ -134,13 +134,13 @@
         overflow:hidden;
         background:#fff;
         border-radius:16px;
-        padding:12px 18px;
+        padding:12px 14px;
         box-shadow:0 6px 18px rgba(0,0,0,0.12);
         display:flex;
         flex-direction:row;
         align-items:center;
         justify-content:space-between;
-        gap:14px;
+        gap:10px;
         transition:all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
         cursor:pointer;
         border: 2px solid transparent;
@@ -178,9 +178,9 @@
 
     /* FLOATING & BOUNCING ICON ANIMATION */
     .card-icon{
-        width:48px;
-        height:48px;
-        min-width:48px;
+        width:42px;
+        height:42px;
+        min-width:42px;
         border-radius:50%;
         background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);
         display:flex;
@@ -203,10 +203,10 @@
     }
 
     .card-name{
-        font-size:14.5px;
+        font-size:13.5px;
         font-weight:700;
         color:var(--text);
-        line-height:1.3;
+        line-height:1.28;
         flex:1;
         margin-bottom:0;
     }
@@ -214,8 +214,8 @@
     /* ---------- DOOR PLATE WITH FLOOR & ROOM ---------- */
     .room-plate{
         position:relative;
-        min-width:145px;
-        max-width:170px;
+        min-width:110px;
+        max-width:130px;
         background:linear-gradient(160deg,var(--plate-1) 0%,var(--plate-2) 100%);
         border-radius:10px;
         padding:8px 12px;
@@ -255,7 +255,7 @@
         display:block;
         font-weight:700;
         color:#f4f4f8;
-        font-size:13px;
+        font-size:12px;
         line-height:1.2;
     }
 
@@ -280,6 +280,9 @@
     }
 
     /* RESPONSIVE FOR SMALLER SCREENS */
+    @media (max-width: 1150px){
+        .cards-grid{grid-template-columns: 1fr 1fr;}
+    }
     @media (max-width: 900px){
         body{padding:12px;}
         .lang-switcher{position:relative; top:0; right:0; justify-content:center; margin-bottom:10px;}
@@ -320,62 +323,96 @@
     // ДАННЫЕ В УКАЗАННОМ ПОРЯДКЕ
     // ========================================
     const DATA = [
-        { 
-            key:'tech', icon:'🔬', number:6,
-            name:{ kk:'Ғылыми-техникалық бағыт', ru:'Научно-техническое направление' } 
+        {
+            key:'oratory', icon:'🎤',
+            name:{ kk:'Шешендік өнер', ru:'Ораторское искусство' },
+            grade:{ kk:'5-9 сынып', ru:'5-9 классы' }
         },
-        { 
-            key:'tourism', icon:'🧭', number:8,
-            name:{ kk:'Туризм және өлкетану бағыты', ru:'Туристско-краеведческое направление' } 
+        {
+            key:'wood_art', icon:'🪵',
+            name:{ kk:'Ағашты көркем ою үйірмесі', ru:'Художественная резьба по дереву' },
+            grade:{ kk:'4-11 сынып аралығы', ru:'4-11 классы' }
         },
-        { 
-            key:'eco_bio', icon:'🌿', number:4,
-            name:{ kk:'Экологиялық-биологиялық бағыт', ru:'Эколого-биологическое направление' } 
+        {
+            key:'table_tennis', icon:'🏓',
+            name:{ kk:'Үстел теннисі', ru:'Настольный теннис' },
+            grade:{ kk:'5-11 сынып', ru:'5-11 классы' }
         },
-        { 
-            key:'art', icon:'🎨', number:2,
-            name:{ kk:'Көркемдік-эстетикалық бағыт', ru:'Художественно-эстетическое направление' } 
+        {
+            key:'robotics', icon:'🦾',
+            name:{ kk:'Робототехника', ru:'Робототехника' },
+            grade:{ kk:'6-9 сынып', ru:'6-9 классы' }
         },
-        { 
-            key:'music', icon:'🎵', number:5,
-            name:{ kk:'Музыкалық бағыт', ru:'Музыкальное направление' } 
+        {
+            key:'volleyball', icon:'🏐',
+            name:{ kk:'Волейбол', ru:'Волейбол' },
+            grade:{ kk:'6-11 сынып', ru:'6-11 классы' }
         },
-        { 
-            key:'social_pedagogy', icon:'🧑‍🏫', number:11,
-            name:{ kk:'Әлеуметтік-педагогикалық бағыт', ru:'Социально-педагогическое направление' } 
+        {
+            key:'togyzkumalak', icon:'♟️',
+            name:{ kk:'Тоғызқұмалақ', ru:'Тогызкумалак' },
+            grade:{ kk:'3-8 сынып', ru:'3-8 классы' }
         },
-        { 
-            key:'humanities', icon:'📚', number:12,
-            name:{ kk:'Гуманитарлық бағыт (тіл курстары)', ru:'Гуманитарное направление (языковые курсы)' } 
+        {
+            key:'choreography', icon:'💃',
+            name:{ kk:'«Хореография» үйірмесі', ru:'Кружок «Хореография»' },
+            grade:{ kk:'4-8 сынып', ru:'4-8 классы' }
         },
-        { 
-            key:'math_science', icon:'📐', number:13,
-            name:{ kk:'Жаратылыстану-математикалық бағыт (математикалық курстар)', ru:'Естественно-математическое направление (математические курсы)' } 
+        {
+            key:'auto_business', icon:'🚗',
+            name:{ kk:'Автокөлік ісі', ru:'Автодело' },
+            grade:{ kk:'9-11 сынып', ru:'9-11 классы' }
         },
-        { 
-            key:'sport', icon:'🏃', number:7,
-            name:{ kk:'Спорт бағыты', ru:'Спортивное направление' } 
+        {
+            key:'it_ai', icon:'🤖',
+            name:{ kk:'IT және жасанды интеллект', ru:'IT и искусственный интеллект' },
+            grade:{ kk:'5-11 сынып', ru:'5-11 классы' }
         },
-        { 
-            key:'add_edu_directors', icon:'🗂️', number:null,
-            name:{ kk:'Қосымша білім беру директорлары', ru:'Директора дополнительного образования' },
-            text:{ kk:'Мұғалімдер бөлмесі', ru:'Учительская' } 
+        {
+            key:'art_therapy_2', icon:'🎨',
+            name:{ kk:'Арт-терапия', ru:'Арт-терапия' },
+            grade:{ kk:'5-11 сынып', ru:'5-11 классы' }
+        },
+        {
+            key:'intellect_club', icon:'🧠',
+            name:{ kk:'Интеллектуалды ойындар клубы', ru:'Клуб интеллектуальных игр' },
+            grade:{ kk:'1-4 сынып (бастауыш)', ru:'1-4 классы (начальные)' }
+        },
+        {
+            key:'eco_tourism', icon:'🥾',
+            name:{ kk:'Экологиялық туризм', ru:'Экологический туризм' },
+            grade:{ kk:'6-9 сынып', ru:'6-9 классы' }
+        },
+        {
+            key:'magic_english', icon:'🔤',
+            name:{ kk:'Magic English', ru:'Magic English' },
+            grade:{ kk:'3-9 сынып', ru:'3-9 классы' }
+        },
+        {
+            key:'wood_craft', icon:'🪚',
+            name:{ kk:'Ағашты көркем өңдеу', ru:'Художественная обработка дерева' },
+            grade:{ kk:'5-8 сынып', ru:'5-8 классы' }
+        },
+        {
+            key:'young_reader', icon:'📚',
+            name:{ kk:'Жас оқырман', ru:'Юный читатель' },
+            grade:{ kk:'1-4 сынып (бастауыш)', ru:'1-4 классы (начальные)' }
         }
     ];
 
     const UI = {
         kk:{
-            eyebrow:'📍 Кабинеттер картасы',
-            title:'Бағыттар мен кабинеттер',
-            subtitle:'Іс-шараға қатысу үшін керекті кабинетті осы жерден тез табыңыз',
-            locationLabel:'ОРНЫ',
+            eyebrow:'📍 Үйірмелер тізімі',
+            title:'Үйірмелер мен сыныптар',
+            subtitle:'Балаңызға қажетті үйірмені осы жерден тез табыңыз',
+            locationLabel:'СЫНЫП',
             footer:'💬 Сұрақтар туындаса — ресепшннен сұраңыз'
         },
         ru:{
-            eyebrow:'📍 Карта кабинетов',
-            title:'Направления и кабинеты',
-            subtitle:'Быстро найдите нужный кабинет для участия в мероприятии',
-            locationLabel:'ЛОКАЦИЯ',
+            eyebrow:'📍 Список кружков',
+            title:'Кружки и классы',
+            subtitle:'Быстро найдите подходящий кружок для вашего ребёнка',
+            locationLabel:'КЛАСС',
             footer:'💬 Если возникнут вопросы — обратитесь на ресепшн'
         }
     };
@@ -386,13 +423,7 @@
         const container = document.getElementById('cardsGrid');
 
         const cardsHtml = DATA.map((d, index) => {
-            // Форматирование текста локации: "6-кабинет" или "АКТ залы"
-            let locationText = '';
-            if (lang === 'kk') {
-                locationText = d.number !== null ? `${d.number}-кабинет` : d.text.kk;
-            } else {
-                locationText = d.number !== null ? `Кабинет ${d.number}` : d.text.ru;
-            }
+            const locationText = d.grade[lang];
 
             const delay = (index * 0.05).toFixed(2);
             const floatDelay = (index * 0.3).toFixed(2);
