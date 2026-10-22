@@ -1,463 +1,316 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="kk">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Үйірмелер мен сыныптар / Кружки и классы</title>
-<style>
-    :root{
-        --primary:#667eea;
-        --primary-dark:#764ba2;
-        --text:#2f2f38;
-        --plate-1:#2c2c38;
-        --plate-2:#1a1a22;
-        --glass:rgba(255,255,255,0.18);
-        --glass-border:rgba(255,255,255,0.3);
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#f5f9ff" />
+  <meta name="description" content="Arduino, Wokwi, Edge Impulse, BrickLink Studio, Meshy, OpenSCAD, Obico және ChatGPT: оқу мен жобалауға арналған пайдалы ресми материалдар." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Материалдар — Пайдаланылған әдебиеттер мен дереккөздер" />
+  <meta property="og:description" content="8 ресми ресурс. Әр карточкадан қажетті сайтқа өте аласыз." />
+  <title>Материалдар | Пайдаланылған әдебиеттер мен дереккөздер</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%231b75d9'/%3E%3Cpath d='M15 18h17q6 0 6 6v27q-5-5-11-5H15zM49 18H38q-6 0-6 6v27q5-5 11-5h6z' fill='none' stroke='white' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --blue: #1975db;
+      --blue-dark: #135aad;
+      --blue-soft: #e5f2ff;
+      --ink: #143158;
+      --muted: #63758d;
+      --line: #e1ebf7;
+      --card: rgba(255,255,255,.89);
+      --shadow: 0 14px 35px rgba(41,93,148,.055), 0 2px 8px rgba(41,93,148,.025);
+      font-synthesis: none;
     }
-    *{margin:0;padding:0;box-sizing:border-box;}
-    html{scroll-behavior:smooth;}
-    
-    /* STATIC ELEGANT BACKGROUND */
-    body{
-        font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-        background-attachment: fixed;
-        min-height:100vh;
-        color:var(--text);
-        padding:20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        overflow-x: hidden;
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse 52% 29% at 2% 66%, rgba(197,219,255,.34), transparent 90%),
+        radial-gradient(ellipse 50% 32% at 100% 0%, rgba(215,231,255,.37), transparent 85%),
+        linear-gradient(150deg, #fff 0%, #f8fbff 48%, #f2f7ff 100%);
+      overflow-x: hidden;
     }
-
-    /* ---------- LANGUAGE SWITCHER ---------- */
-    .lang-switcher{
-        position:absolute;
-        top:20px;
-        right:25px;
-        z-index:200;
-        background:var(--glass);
-        padding:5px;
-        border-radius:30px;
-        backdrop-filter:blur(10px);
-        border:1px solid var(--glass-border);
-        display:flex;
-        gap:5px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    a { color: inherit; }
+    .page { position: relative; isolation: isolate; min-height: 100vh; overflow: hidden; }
+    .network { position:absolute; pointer-events:none; z-index:-1; opacity:.74; color:#a6c7fc; }
+    .network.top-left { width:270px; left:-74px; top:-69px; }
+    .network.top-right { width:370px; right:-62px; top:-115px; transform:rotate(16deg); opacity:.52; }
+    .network.bottom-left { width:390px; left:-176px; bottom:-213px; transform:rotate(18deg); opacity:.48; }
+    .network.bottom-right { width:390px; right:-155px; bottom:-228px; transform:rotate(-21deg); opacity:.58; }
+    .container { width:min(1152px, calc(100% - 64px)); margin-inline:auto; }
+    .hero { padding-top:54px; text-align:center; position:relative; }
+    .lang-switch {
+      position:absolute; top:3px; right:0; z-index:2;
+      display:inline-flex; gap:3px; align-items:center; padding:5px;
+      border:1px solid #d9eafa; background:rgba(255,255,255,.88);
+      border-radius:999px; box-shadow:0 7px 22px rgba(47,96,152,.075);
     }
-    .lang-btn{
-        border:none;
-        background:transparent;
-        color:#fff;
-        padding:8px 18px;
-        border-radius:25px;
-        cursor:pointer;
-        font-weight:700;
-        font-size:13px;
-        transition:all .3s cubic-bezier(0.4, 0, 0.2, 1);
+    .lang-switch-icon { width:17px; height:17px; margin:0 5px 0 8px; color:#5c86b5; flex:0 0 auto; }
+    .lang-btn {
+      min-width:54px; min-height:36px; padding:7px 11px;
+      border:0; border-radius:999px; cursor:pointer;
+      color:#607d9d; background:transparent;
+      font:750 12px/1 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+      letter-spacing:.035em; transition:background .18s ease,color .18s ease,box-shadow .18s ease;
     }
-    .lang-btn.active{
-        background:#fff;
-        color:var(--primary-dark);
-        box-shadow:0 3px 12px rgba(0,0,0,0.2);
-        transform: scale(1.05);
+    .lang-btn[aria-pressed="true"] { background:#1975db; color:white; box-shadow:0 3px 9px rgba(25,117,219,.20); }
+    .lang-btn:hover:not([aria-pressed="true"]) { background:#ebf4ff; color:#145a9a; }
+    .lang-btn:focus-visible { outline:3px solid #69aafa; outline-offset:3px; }
+    .eyebrow { display:inline-flex; align-items:center; gap:9px; font-size:11px; font-weight:750; letter-spacing:.17em; color:var(--blue); text-transform:uppercase; }
+    .eyebrow::before,.eyebrow::after { content:""; width:22px; height:1px; background:#a3c9f4; }
+    h1 { margin:15px 0 0; color:#2379d5; font-family:Georgia,"Times New Roman",serif; font-size:clamp(38px, 5.3vw, 64px); line-height:1.1; letter-spacing:.095em; font-weight:700; text-shadow:0 1px 0 #fff; }
+    .hero-intro { position:relative; margin-top:36px; padding-right:155px; text-align:left; }
+    h2 { max-width:850px; margin:0; font-family:Georgia,"Times New Roman",serif; font-size:clamp(26px, 3.5vw, 43px); letter-spacing:-.025em; line-height:1.25; font-weight:700; }
+    .description { max-width:900px; margin:13px 0 0; font-size:clamp(15px, 1.7vw, 20px); color:var(--muted); line-height:1.65; }
+    .robot { position:absolute; width:178px; height:169px; right:-16px; bottom:-15px; pointer-events:none; filter:drop-shadow(0 10px 14px rgba(25,89,170,.12)); }
+    .main-section { padding-top:32px; }
+    .section-bar { display:flex; align-items:center; gap:12px; justify-content:space-between; margin-bottom:16px; }
+    .section-kicker { font-size:12px; font-weight:750; color:#6b89aa; letter-spacing:.105em; text-transform:uppercase; }
+    .pill { border:1px solid #d9eafa; color:#4b78a6; background:rgba(234,244,255,.75); border-radius:999px; padding:7px 12px; font-size:12px; font-weight:700; white-space:nowrap; }
+    .resources { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); grid-template-rows:repeat(4, minmax(154px, auto)); grid-auto-flow:column; gap:17px 20px; }
+    .resource {
+      position:relative; display:flex; min-height:154px; align-items:center; gap:19px;
+      padding:22px 22px 20px 23px; border-radius:20px; text-decoration:none;
+      background:var(--card); border:1px solid rgba(219,232,249,.97); box-shadow:var(--shadow);
+      transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,background .22s ease;
     }
-    .lang-btn:hover:not(.active){background:rgba(255,255,255,0.2);}
-
-    /* ---------- HERO SECTION ---------- */
-    .hero{
-        text-align:center;
-        color:#fff;
-        max-width:850px;
-        margin:10px auto 15px;
-        animation: fadeInDown 0.8s ease-out;
+    .resource::before { content:""; position:absolute; top:17px; bottom:17px; left:0; width:3px; background:linear-gradient(180deg,transparent,#419bf1,transparent); border-radius:3px; opacity:0; transition:opacity .22s; }
+    .resource:hover { transform:translateY(-4px); border-color:#bfdcff; background:#fff; box-shadow:0 17px 35px rgba(44,101,169,.11); }
+    .resource:hover::before { opacity:1; }
+    .resource:focus-visible { outline:3px solid var(--blue); outline-offset:4px; background:#fff; }
+    .number { flex:0 0 55px; width:55px; height:55px; display:grid; place-items:center; border:1px solid #d9ecff; border-radius:50%; background:linear-gradient(135deg,#e9f4ff,#d8eaff); color:#1674dc; font-family:Georgia,"Times New Roman",serif; font-size:17px; font-weight:700; }
+    .resource-content { min-width:0; width:100%; }
+    .resource-heading { display:flex; align-items:center; gap:8px; justify-content:space-between; }
+    h3 { margin:0; font-family:Georgia,"Times New Roman",serif; font-size:clamp(18px,2.0vw,26px); line-height:1.2; letter-spacing:-.012em; font-weight:700; }
+    .arrow { flex:0 0 auto; width:31px; height:31px; display:grid; place-items:center; border-radius:9px; border:1px solid #e0efff; color:#277ace; background:#f0f7ff; transition:transform .22s ease,background .22s ease; }
+    .resource:hover .arrow { background:#e0efff; transform:translate(2px,-2px); }
+    .arrow svg { width:17px; height:17px; }
+    .resource-description { margin:7px 0 10px; color:#5f7189; font-size:15px; line-height:1.55; }
+    .domain { display:flex; align-items:center; gap:7px; font-size:12px; font-weight:700; color:#4385c8; overflow-wrap:anywhere; }
+    .domain svg { width:13px; height:13px; flex:0 0 auto; opacity:.8; }
+    .footer { display:flex; gap:24px; justify-content:space-between; align-items:center; padding:31px 0 39px; color:#758ba5; font-size:12px; line-height:1.6; }
+    .footer-note { display:flex; gap:9px; align-items:flex-start; }
+    .footer-note svg { width:17px; height:17px; flex:0 0 auto; margin-top:1px; color:#4d99e4; }
+    .footer-copy { text-align:right; }
+    @media (max-width: 850px) {
+      .hero-intro { padding-right:120px; }
+      .robot { width:135px; right:-18px; bottom:5px; }
+      .resource { gap:14px; padding:19px 17px; min-height:159px; }
+      .number { width:47px; height:47px; flex-basis:47px; font-size:15px; }
+      .resources { gap:14px; }
+      .resource-description { font-size:14px; }
+      h3 { font-size:20px; }
     }
-    .hero-eyebrow{
-        display:inline-block;
-        background:var(--glass);
-        backdrop-filter:blur(8px);
-        border: 1px solid var(--glass-border);
-        padding:5px 18px;
-        border-radius:20px;
-        font-size:12px;
-        font-weight:700;
-        letter-spacing:.5px;
-        margin-bottom:8px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    @media (max-width: 690px) {
+      .container { width:min(540px, calc(100% - 32px)); }
+      .hero { padding-top:100px; }
+      .lang-switch { top:24px; right:0; }
+      h1 { margin-top:13px; font-size:clamp(34px,8.1vw,48px); letter-spacing:.06em; }
+      .hero-intro { margin-top:29px; padding-right:0; text-align:center; }
+      h2 { font-size:clamp(26px,6.5vw,36px); }
+      .description { margin-top:13px; font-size:15px; }
+      .robot { display:none; }
+      .main-section { padding-top:31px; }
+      .resources { grid-template-columns:1fr; grid-template-rows:none; grid-auto-flow:row; gap:12px; }
+      .resource { min-height:130px; border-radius:17px; padding:18px 17px; gap:14px; }
+      .number { width:49px; height:49px; flex-basis:49px; }
+      h3 { font-size:21px; }
+      .resource-description { font-size:14px; margin:7px 0 7px; }
+      .footer { padding:26px 0 36px; flex-direction:column; align-items:flex-start; gap:10px; }
+      .footer-copy { text-align:left; }
+      .network.top-right { right:-180px; }
     }
-    .hero h1{
-        font-size:clamp(24px,3vw,34px);
-        font-weight:800;
-        text-shadow:0 3px 12px rgba(0,0,0,0.2);
-        margin-bottom:4px;
-        letter-spacing: -0.5px;
+    @media (max-width: 360px) {
+      .container { width:calc(100% - 24px); }
+      .resource { gap:11px; padding:16px 12px; }
+      .number { width:42px; height:42px; flex-basis:42px; }
+      .arrow { width:27px; height:27px; }
+      h3 { font-size:19px; }
+      .section-kicker { font-size:11px; }
+      .pill { font-size:11px; }
     }
-    .hero p{
-        font-size:15px;
-        opacity:.95;
-        line-height:1.3;
-        font-weight: 500;
+    @media (prefers-reduced-motion:reduce) {
+      html { scroll-behavior:auto; }
+      .resource,.resource::before,.arrow,.lang-btn { transition:none; }
     }
-
-    /* ---------- CENTERED MAIN CONTENT CONTAINER ---------- */
-    .content-container{
-        width:100%;
-        max-width:1450px;
-        margin:0 auto;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        flex: 1;
-    }
-
-    .main-card-container{
-        width:100%;
-        background:rgba(255,255,255,0.12);
-        backdrop-filter:blur(16px);
-        border:1.5px solid var(--glass-border);
-        border-radius:28px;
-        padding:22px 28px;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-    }
-
-    /* ---------- CARDS GRID (2 COLUMNS) ---------- */
-    .cards-grid{
-        display:grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px 16px;
-    }
-
-    .direction-card{
-        position:relative;
-        overflow:hidden;
-        background:#fff;
-        border-radius:16px;
-        padding:12px 14px;
-        box-shadow:0 6px 18px rgba(0,0,0,0.12);
-        display:flex;
-        flex-direction:row;
-        align-items:center;
-        justify-content:space-between;
-        gap:10px;
-        transition:all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-        cursor:pointer;
-        border: 2px solid transparent;
-        animation: cardAppear 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    }
-    
-    /* Animation for card appearance */
-    @keyframes cardAppear {
-        from { opacity: 0; transform: translateY(15px) scale(0.98); }
-        to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    /* Card Hover / Touch Effect */
-    .direction-card:hover, .direction-card:active{
-        border-color: rgba(102, 126, 234, 0.4);
-        box-shadow:0 10px 28px rgba(0,0,0,0.22), 0 0 18px rgba(255,255,255,0.6);
-        transform:translateY(-2px) scale(1.01);
-    }
-
-    /* Light Sweep (Shimmer) Animation */
-    .direction-card::after {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -60%;
-        width: 50%;
-        height: 200%;
-        background: linear-gradient(60deg, transparent, rgba(255,255,255,0.6), transparent);
-        transform: rotate(25deg);
-        transition: all 0.6s ease;
-    }
-    .direction-card:hover::after {
-        left: 120%;
-    }
-
-    /* FLOATING & BOUNCING ICON ANIMATION */
-    .card-icon{
-        width:42px;
-        height:42px;
-        min-width:42px;
-        border-radius:50%;
-        background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        font-size:24px;
-        box-shadow:0 4px 12px rgba(102,126,234,0.4);
-        transition:transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        animation: floatIcon 3s ease-in-out infinite;
-    }
-
-    @keyframes floatIcon {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-4px); }
-    }
-
-    .direction-card:hover .card-icon{
-        transform:scale(1.18) rotate(10deg);
-        animation: none;
-    }
-
-    .card-name{
-        font-size:13.5px;
-        font-weight:700;
-        color:var(--text);
-        line-height:1.28;
-        flex:1;
-        margin-bottom:0;
-    }
-
-    /* ---------- DOOR PLATE WITH FLOOR & ROOM ---------- */
-    .room-plate{
-        position:relative;
-        min-width:110px;
-        max-width:130px;
-        background:linear-gradient(160deg,var(--plate-1) 0%,var(--plate-2) 100%);
-        border-radius:10px;
-        padding:8px 12px;
-        text-align:center;
-        box-shadow:
-            inset 0 1px 0 rgba(255,255,255,0.15),
-            inset 0 -2px 4px rgba(0,0,0,0.5),
-            0 4px 10px rgba(0,0,0,0.25);
-        flex-shrink:0;
-        transition:transform 0.3s ease;
-    }
-    .direction-card:hover .room-plate{
-        transform:scale(1.03);
-    }
-    .room-plate::before,
-    .room-plate::after{
-        content:'';
-        position:absolute;
-        top:7px;
-        width:4px;
-        height:4px;
-        border-radius:50%;
-        background:radial-gradient(circle at 35% 35%,#e4e4e8,#8b8b93 60%,#55555c);
-    }
-    .room-plate::before{left:7px;}
-    .room-plate::after{right:7px;}
-    .plate-eyebrow{
-        display:block;
-        font-size:8.5px;
-        letter-spacing:1px;
-        font-weight:700;
-        color:rgba(255,255,255,0.5);
-        text-transform:uppercase;
-        margin-bottom:2px;
-    }
-    .plate-value{
-        display:block;
-        font-weight:700;
-        color:#f4f4f8;
-        font-size:12px;
-        line-height:1.2;
-    }
-
-    /* ---------- FOOTER ---------- */
-    .footer-note{
-        margin-top:15px;
-        text-align:center;
-        color:rgba(255,255,255,0.9);
-        font-size:13.5px;
-        font-weight:500;
-        animation: fadeIn 1s ease-out;
-    }
-
-    /* ---------- ANIMATION KEYFRAMES ---------- */
-    @keyframes fadeInDown {
-        from { opacity:0; transform:translateY(-20px); }
-        to { opacity:1; transform:translateY(0); }
-    }
-    @keyframes fadeIn {
-        from { opacity:0; }
-        to { opacity:1; }
-    }
-
-    /* RESPONSIVE FOR SMALLER SCREENS */
-    @media (max-width: 1150px){
-        .cards-grid{grid-template-columns: 1fr 1fr;}
-    }
-    @media (max-width: 900px){
-        body{padding:12px;}
-        .lang-switcher{position:relative; top:0; right:0; justify-content:center; margin-bottom:10px;}
-        .main-card-container{padding:15px 18px;}
-        .cards-grid{grid-template-columns: 1fr;}
-    }
-</style>
+  </style>
 </head>
 <body>
-
-    <!-- LANGUAGE SWITCHER -->
-    <div class="lang-switcher">
-        <button class="lang-btn" id="lang-kk" onclick="setLanguage('kk')">🇰🇿 ҚАЗ</button>
-        <button class="lang-btn" id="lang-ru" onclick="setLanguage('ru')">🇷🇺 РУС</button>
-    </div>
-
-    <!-- HERO HEADER -->
-    <div class="hero">
-        <span class="hero-eyebrow" data-i18n="eyebrow">📍 Кабинеттер картасы</span>
-        <h1 data-i18n="title">Бағыттар мен кабинеттер</h1>
-        <p data-i18n="subtitle">Іс-шараға қатысу үшін керекті кабинетті осы жерден тез табыңыз</p>
-    </div>
-
-    <!-- CENTERED MAIN BLOCK WITH ALL DIRECTIONS -->
-    <div class="content-container">
-        <div class="main-card-container">
-            <div class="cards-grid" id="cardsGrid">
-                <!-- Dynamic Content Injected Here -->
-            </div>
-        </div>
-    </div>
-
-    <!-- FOOTER -->
-   
-
-<script>
-    // ========================================
-    // ДАННЫЕ В УКАЗАННОМ ПОРЯДКЕ
-    // ========================================
-    const DATA = [
-        {
-            key:'oratory', icon:'🎤',
-            name:{ kk:'Шешендік өнер', ru:'Ораторское искусство' },
-            grade:{ kk:'5-9 сынып', ru:'5-9 классы' }
+  <div class="page">
+    <svg class="network top-left" aria-hidden="true" viewBox="0 0 300 260" fill="none" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" stroke-width="1"><path d="M-10 91 70 12l77 32 74-69M6 162 74 83l74 35 71-42 69 29M-12 214l78-55 88 35 55-73 82 51M70 12l4 71-8 76 88 35M147 44l1 74 61 3M219 76l2-101M209 121l79-16"/></g><g fill="#9cbffa"><circle cx="70" cy="12" r="5"/><circle cx="74" cy="83" r="5"/><circle cx="66" cy="159" r="4"/><circle cx="147" cy="44" r="5"/><circle cx="148" cy="118" r="4"/><circle cx="154" cy="194" r="6"/><circle cx="209" cy="121" r="5"/><circle cx="219" cy="76" r="4"/><circle cx="288" cy="105" r="4"/></g></svg>
+    <svg class="network top-right" aria-hidden="true" viewBox="0 0 300 260" fill="none" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" stroke-width="1"><path d="M-10 91 70 12l77 32 74-69M6 162 74 83l74 35 71-42 69 29M-12 214l78-55 88 35 55-73 82 51M70 12l4 71-8 76 88 35M147 44l1 74 61 3M219 76l2-101M209 121l79-16"/></g><g fill="#9cbffa"><circle cx="70" cy="12" r="5"/><circle cx="74" cy="83" r="5"/><circle cx="66" cy="159" r="4"/><circle cx="147" cy="44" r="5"/><circle cx="148" cy="118" r="4"/><circle cx="154" cy="194" r="6"/><circle cx="209" cy="121" r="5"/><circle cx="219" cy="76" r="4"/><circle cx="288" cy="105" r="4"/></g></svg>
+    <svg class="network bottom-left" aria-hidden="true" viewBox="0 0 300 260" fill="none" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" stroke-width="1"><path d="M-10 91 70 12l77 32 74-69M6 162 74 83l74 35 71-42 69 29M-12 214l78-55 88 35 55-73 82 51M70 12l4 71-8 76 88 35M147 44l1 74 61 3M219 76l2-101M209 121l79-16"/></g><g fill="#9cbffa"><circle cx="70" cy="12" r="5"/><circle cx="74" cy="83" r="5"/><circle cx="66" cy="159" r="4"/><circle cx="147" cy="44" r="5"/><circle cx="148" cy="118" r="4"/><circle cx="154" cy="194" r="6"/><circle cx="209" cy="121" r="5"/><circle cx="219" cy="76" r="4"/><circle cx="288" cy="105" r="4"/></g></svg>
+    <svg class="network bottom-right" aria-hidden="true" viewBox="0 0 300 260" fill="none" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" stroke-width="1"><path d="M-10 91 70 12l77 32 74-69M6 162 74 83l74 35 71-42 69 29M-12 214l78-55 88 35 55-73 82 51M70 12l4 71-8 76 88 35M147 44l1 74 61 3M219 76l2-101M209 121l79-16"/></g><g fill="#9cbffa"><circle cx="70" cy="12" r="5"/><circle cx="74" cy="83" r="5"/><circle cx="66" cy="159" r="4"/><circle cx="147" cy="44" r="5"/><circle cx="148" cy="118" r="4"/><circle cx="154" cy="194" r="6"/><circle cx="209" cy="121" r="5"/><circle cx="219" cy="76" r="4"/><circle cx="288" cy="105" r="4"/></g></svg>
+    <header class="hero container">
+      <div class="lang-switch" role="group" aria-label="Тілді таңдау / Выбор языка">
+        <svg class="lang-switch-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
+        <button class="lang-btn" type="button" data-lang="kk" aria-pressed="true" aria-label="Қазақ тілін таңдау" title="Қазақша">ҚАЗ</button>
+        <button class="lang-btn" type="button" data-lang="ru" aria-pressed="false" aria-label="Выбрать русский язык" title="Русский">РУС</button>
+      </div>
+      <span class="eyebrow" data-i18n="eyebrow">Білім • Технология • Жобалау</span>
+      <h1 data-i18n="title">МАТЕРИАЛДАР</h1>
+      <div class="hero-intro">
+        <h2 data-i18n="subtitle">Пайдаланылған әдебиеттер мен дереккөздер</h2>
+        <p class="description" data-i18n="intro">Өз бетімен жұмыс істеуге арналған ресми құжаттама және анықтамалық материалдар.</p>
+        <svg class="robot" viewBox="0 0 210 190" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="head" x1=".2" y1="0" x2=".9" y2="1"><stop stop-color="#fff"/><stop offset=".53" stop-color="#d6e8f8"/><stop offset="1" stop-color="#8faed2"/></linearGradient>
+            <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7cb8ff"/><stop offset="1" stop-color="#1e64c2"/></linearGradient>
+            <linearGradient id="body" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f6faff"/><stop offset="1" stop-color="#9dbee0"/></linearGradient>
+          </defs>
+          <ellipse cx="112" cy="174" rx="77" ry="9" fill="#97b8e3" opacity=".2"/>
+          <path d="M74 122c-9 8-12 24-7 36 13 14 69 17 90 2 6-13 2-29-9-39z" fill="url(#body)" stroke="#90b2d6" stroke-width="2"/>
+          <path d="M73 134 37 123l-7 26 44 20 21-16z" fill="url(#blue)" stroke="#508acb" stroke-width="2"/>
+          <path d="M98 139 148 128l29 20-51 22z" fill="#286ec5" stroke="#1e559e" stroke-width="2"/>
+          <path d="M74 134 102 151l24 19-28-9-30-17z" fill="#9ecbff" opacity=".9"/>
+          <path d="M98 139 110 154l16 16-27-9-25-27z" fill="#d8ebff"/>
+          <circle cx="155" cy="138" r="12" fill="url(#head)" stroke="#80a3c7" stroke-width="2"/>
+          <circle cx="160" cy="136" r="4" fill="#2474ce"/>
+          <path d="M64 129c-12 3-15 12-16 22" stroke="#739ac4" stroke-width="11" stroke-linecap="round"/>
+          <circle cx="47" cy="153" r="10" fill="url(#head)" stroke="#8aabcf" stroke-width="2"/>
+          <path d="M104 24v-13" stroke="#6b91b9" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="104" cy="9" r="6" fill="#3b8de6" stroke="#b0d6fc" stroke-width="2"/>
+          <rect x="50" y="24" width="110" height="100" rx="45" fill="url(#head)" stroke="#7fa7cc" stroke-width="2.3"/>
+          <rect x="41" y="58" width="17" height="34" rx="8" fill="url(#blue)" stroke="#5d8bc2" stroke-width="2"/>
+          <rect x="152" y="58" width="17" height="34" rx="8" fill="url(#blue)" stroke="#5d8bc2" stroke-width="2"/>
+          <ellipse cx="84" cy="74" rx="22" ry="24" fill="#f8fcff" stroke="#3a81cb" stroke-width="5"/>
+          <ellipse cx="129" cy="74" rx="22" ry="24" fill="#f8fcff" stroke="#3a81cb" stroke-width="5"/>
+          <path d="M106 73h2" stroke="#3a81cb" stroke-width="5" stroke-linecap="round"/>
+          <ellipse cx="87" cy="75" rx="8" ry="12" fill="#153763"/>
+          <ellipse cx="127" cy="75" rx="8" ry="12" fill="#153763"/>
+          <circle cx="90" cy="70" r="3.5" fill="white"/>
+          <circle cx="130" cy="70" r="3.5" fill="white"/>
+          <path d="M100 103q8 8 17 0" fill="none" stroke="#517ca8" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="64" cy="98" r="5" fill="#f3a2b4" opacity=".45"/>
+          <circle cx="146" cy="98" r="5" fill="#f3a2b4" opacity=".45"/>
+          <path d="M68 33q-13 11-15 23" fill="none" stroke="white" stroke-width="5" stroke-linecap="round" opacity=".8"/>
+        </svg>
+      </div>
+    </header>
+    <main class="container main-section">
+      <div class="section-bar"><span class="section-kicker" data-i18n="links">Пайдалы сілтемелер</span><span class="pill" data-i18n="count">8 ресурс</span></div>
+      <section class="resources" aria-label="Оқу мен жобалауға арналған 8 ресми ресурс" data-i18n-aria="sectionLabel">
+        <a class="resource" href="https://docs.arduino.cc/" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria_arduino" aria-label="Arduino Documentation — ресми сайтты жаңа қойындыда ашу">
+          <span class="number" aria-hidden="true">01</span><div class="resource-content"><div class="resource-heading"><h3>Arduino Documentation</h3><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><p class="resource-description" data-i18n="res_arduino">TinyML тәжірибесі және Nano 33 BLE Sense-пен жұмыс</p><span class="domain">docs.arduino.cc</span></div>
+        </a>
+        <a class="resource" href="https://docs.wokwi.com/" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria_wokwi" aria-label="Wokwi Docs — ресми сайтты жаңа қойындыда ашу">
+          <span class="number" aria-hidden="true">02</span><div class="resource-content"><div class="resource-heading"><h3>Wokwi Docs</h3><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><p class="resource-description" data-i18n="res_wokwi">Микроконтроллерлер, датчиктер және сызбалар симуляторы</p><span class="domain">docs.wokwi.com</span></div>
+        </a>
+        <a class="resource" href="https://docs.edgeimpulse.com/docs" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria_edge" aria-label="Edge Impulse — ресми сайтты жаңа қойындыда ашу">
+          <span class="number" aria-hidden="true">03</span><div class="resource-content"><div class="resource-heading"><h3>Edge Impulse</h3><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><p class="resource-description" data-i18n="res_edge">Ендірілген ЖИ-ді үйрету және құрылғыға енгізу</p><span class="domain">docs.edgeimpulse.com</span></div>
+        </a>
+        <a class="resource" href="https://www.bricklink.com/v3/studio/download.page" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria_bricklink" aria-label="BrickLink Studio — ресми сайтты жаңа қойындыда ашу">
+          <span class="number" aria-hidden="true">04</span><div class="resource-content"><div class="resource-heading"><h3>BrickLink Studio</h3><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><p class="resource-description" data-i18n="res_bricklink">LEGO құрылымдарын цифрлық жобалау</p><span class="domain">bricklink.com</span></div>
+        </a>
+        <a class="resource" href="https://help.meshy.ai/ru/" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria_meshy" aria-label="Meshy Help Center — ресми сайтты жаңа қойындыда ашу">
+          <span class="number" aria-hidden="true">05</span><div class="resource-content"><div class="resource-heading"><h3>Meshy Help Center</h3><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><p class="resource-description" data-i18n="res_meshy">Мәтіннен 3D-модель жасау, дайындау және экспорттау</p><span class="domain">help.meshy.ai</span></div>
+        </a>
+        <a class="resource" href="https://openscad.org/documentation" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria_openscad" aria-label="OpenSCAD — ресми сайтты жаңа қойындыда ашу">
+          <span class="number" aria-hidden="true">06</span><div class="resource-content"><div class="resource-heading"><h3>OpenSCAD</h3><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><p class="resource-description" data-i18n="res_openscad">Бағдарламалық параметрлік 3D-модельдеу</p><span class="domain">openscad.org</span></div>
+        </a>
+        <a class="resource" href="https://www.obico.io/failure-detection.html" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria_obico" aria-label="Obico — ресми сайтты жаңа қойындыда ашу">
+          <span class="number" aria-hidden="true">07</span><div class="resource-content"><div class="resource-heading"><h3>Obico</h3><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><p class="resource-description" data-i18n="res_obico">3D-басып шығарудағы ақауларды ЖИ арқылы анықтау</p><span class="domain">obico.io</span></div>
+        </a>
+        <a class="resource" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria_chatgpt" aria-label="ChatGPT — ресми сайтты жаңа қойындыда ашу">
+          <span class="number" aria-hidden="true">08</span><div class="resource-content"><div class="resource-heading"><h3>ChatGPT</h3><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><p class="resource-description" data-i18n="res_chatgpt">Идеялар, түсіндірулер және код жазуға көмек</p><span class="domain">chatgpt.com</span></div>
+        </a>
+      </section>
+    </main>
+    <footer class="footer container">
+      <span class="footer-note"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v.01"/></svg><span data-i18n="footerNote">Қажетті ресурсты ашу үшін карточканы басыңыз. Сілтемелер жаңа қойындыда ашылады.</span></span>
+      <span class="footer-copy" data-i18n="footerCopy">Оқу және тәжірибелік жұмыс үшін</span>
+    </footer>
+  </div>
+  <script>
+    (() => {
+      "use strict";
+      const translations = {
+        kk: {
+          pageTitle: "Материалдар | Пайдаланылған әдебиеттер мен дереккөздер",
+          metaDescription: "Arduino, Wokwi, Edge Impulse, BrickLink Studio, Meshy, OpenSCAD, Obico және ChatGPT: оқу мен жобалауға арналған пайдалы ресми материалдар.",
+          ogDescription: "8 ресми ресурс. Әр карточкадан қажетті сайтқа өте аласыз.",
+          eyebrow: "Білім • Технология • Жобалау",
+          title: "МАТЕРИАЛДАР",
+          subtitle: "Пайдаланылған әдебиеттер мен дереккөздер",
+          intro: "Өз бетімен жұмыс істеуге арналған ресми құжаттама және анықтамалық материалдар.",
+          links: "Пайдалы сілтемелер",
+          count: "8 ресурс",
+          sectionLabel: "Оқу мен жобалауға арналған 8 ресми ресурс",
+          res_arduino: "TinyML тәжірибесі және Nano 33 BLE Sense-пен жұмыс",
+          res_wokwi: "Микроконтроллерлер, датчиктер және сызбалар симуляторы",
+          res_edge: "Ендірілген ЖИ-ді үйрету және құрылғыға енгізу",
+          res_bricklink: "LEGO құрылымдарын цифрлық жобалау",
+          res_meshy: "Мәтіннен 3D-модель жасау, дайындау және экспорттау",
+          res_openscad: "Бағдарламалық параметрлік 3D-модельдеу",
+          res_obico: "3D-басып шығарудағы ақауларды ЖИ арқылы анықтау",
+          res_chatgpt: "Идеялар, түсіндірулер және код жазуға көмек",
+          footerNote: "Қажетті ресурсты ашу үшін карточканы басыңыз. Сілтемелер жаңа қойындыда ашылады.",
+          footerCopy: "Оқу және тәжірибелік жұмыс үшін"
         },
-        {
-            key:'wood_art', icon:'🪵',
-            name:{ kk:'Ағашты көркем ою үйірмесі', ru:'Художественная резьба по дереву' },
-            grade:{ kk:'4-11 сынып аралығы', ru:'4-11 классы' }
-        },
-        {
-            key:'table_tennis', icon:'🏓',
-            name:{ kk:'Үстел теннисі', ru:'Настольный теннис' },
-            grade:{ kk:'5-11 сынып', ru:'5-11 классы' }
-        },
-        {
-            key:'robotics', icon:'🦾',
-            name:{ kk:'Робототехника', ru:'Робототехника' },
-            grade:{ kk:'5-11 сынып', ru:'5-11 классы' }
-        },
-        {
-            key:'volleyball', icon:'🏐',
-            name:{ kk:'Волейбол', ru:'Волейбол' },
-            grade:{ kk:'6-11 сынып', ru:'6-11 классы' }
-        },
-        {
-            key:'togyzkumalak', icon:'♟️',
-            name:{ kk:'Тоғызқұмалақ', ru:'Тогызкумалак' },
-            grade:{ kk:'3-8 сынып', ru:'3-8 классы' }
-        },
-        {
-            key:'choreography', icon:'💃',
-            name:{ kk:'«Хореография» үйірмесі', ru:'Кружок «Хореография»' },
-            grade:{ kk:'4-8 сынып', ru:'4-8 классы' }
-        },
-        {
-            key:'auto_business', icon:'🚗',
-            name:{ kk:'Автокөлік ісі', ru:'Автодело' },
-            grade:{ kk:'9-11 сынып', ru:'9-11 классы' }
-        },
-        {
-            key:'it_ai', icon:'🤖',
-            name:{ kk:'IT және жасанды интеллект', ru:'IT и искусственный интеллект' },
-            grade:{ kk:'5-11 сынып', ru:'5-11 классы' }
-        },
-        {
-            key:'art_therapy_2', icon:'🎨',
-            name:{ kk:'Арт-терапия', ru:'Арт-терапия' },
-            grade:{ kk:'5-11 сынып', ru:'5-11 классы' }
-        },
-        {
-            key:'intellect_club', icon:'🧠',
-            name:{ kk:'Интеллектуалды ойындар клубы', ru:'Клуб интеллектуальных игр' },
-            grade:{ kk:'1-4 сынып (бастауыш)', ru:'1-4 классы (начальные)' }
-        },
-        {
-            key:'eco_tourism', icon:'🥾',
-            name:{ kk:'Экологиялық туризм', ru:'Экологический туризм' },
-            grade:{ kk:'6-9 сынып', ru:'6-9 классы' }
-        },
-        {
-            key:'magic_english', icon:'🔤',
-            name:{ kk:'Magic English', ru:'Magic English' },
-            grade:{ kk:'3-9 сынып', ru:'3-9 классы' }
-        },
-        {
-            key:'wood_craft', icon:'🪚',
-            name:{ kk:'Ағашты көркем өңдеу', ru:'Художественная обработка дерева' },
-            grade:{ kk:'5-8 сынып', ru:'5-8 классы' }
-        },
-        {
-            key:'young_reader', icon:'📚',
-            name:{ kk:'Жас оқырман', ru:'Юный читатель' },
-            grade:{ kk:'1-4 сынып (бастауыш)', ru:'1-4 классы (начальные)' }
+        ru: {
+          pageTitle: "Материалы | Использованная литература и источники",
+          metaDescription: "Полезные официальные материалы для обучения и проектирования: Arduino, Wokwi, Edge Impulse, BrickLink Studio, Meshy, OpenSCAD, Obico и ChatGPT.",
+          ogDescription: "8 официальных ресурсов. Перейти на нужный сайт можно из любой карточки.",
+          eyebrow: "Образование • Технологии • Проектирование",
+          title: "МАТЕРИАЛЫ",
+          subtitle: "Использованная литература и источники",
+          intro: "Официальная документация и справочные материалы для самостоятельной работы.",
+          links: "Полезные ссылки",
+          count: "8 ресурсов",
+          sectionLabel: "8 официальных ресурсов для обучения и проектирования",
+          res_arduino: "Эксперименты с TinyML и работа с Nano 33 BLE Sense",
+          res_wokwi: "Симулятор микроконтроллеров, датчиков и электрических схем",
+          res_edge: "Обучение моделей встроенного ИИ и развёртывание на устройствах",
+          res_bricklink: "Цифровое проектирование конструкций LEGO",
+          res_meshy: "Создание, подготовка и экспорт 3D-моделей по текстовому описанию",
+          res_openscad: "Параметрическое 3D-моделирование с помощью кода",
+          res_obico: "Обнаружение дефектов 3D-печати с помощью ИИ",
+          res_chatgpt: "Помощь с идеями, объяснениями и написанием кода",
+          footerNote: "Нажмите на карточку, чтобы открыть ресурс. Ссылки откроются в новой вкладке.",
+          footerCopy: "Для обучения и практической работы"
         }
-    ];
-
-    const UI = {
-        kk:{
-            eyebrow:'📍 Үйірмелер тізімі',
-            title:'Үйірмелер мен сыныптар',
-            subtitle:'Балаңызға қажетті үйірмені осы жерден тез табыңыз',
-            locationLabel:'СЫНЫП',
-        },
-        ru:{
-            eyebrow:'📍 Список кружков',
-            title:'Кружки и классы',
-            subtitle:'Быстро найдите подходящий кружок для вашего ребёнка',
-            locationLabel:'КЛАСС',
-        }
-    };
-
-    let currentLang = 'kk';
-
-    function renderCards(lang){
-        const container = document.getElementById('cardsGrid');
-
-        const cardsHtml = DATA.map((d, index) => {
-            const locationText = d.grade[lang];
-
-            const delay = (index * 0.05).toFixed(2);
-            const floatDelay = (index * 0.3).toFixed(2);
-
-            return `
-                <div class="direction-card" style="animation-delay: ${delay}s;">
-                    <div class="card-icon" style="animation-delay: ${floatDelay}s;">${d.icon}</div>
-                    <div class="card-name">${d.name[lang]}</div>
-                    <div class="room-plate">
-                        <span class="plate-eyebrow">${UI[lang].locationLabel}</span>
-                        <span class="plate-value">${locationText}</span>
-                    </div>
-                </div>
-            `;
-        }).join('');
-
-        container.innerHTML = cardsHtml;
-    }
-
-    function setLanguage(lang){
-        currentLang = lang;
+      };
+      const resourceNames = [
+        ["arduino", "Arduino Documentation"],
+        ["wokwi", "Wokwi Docs"],
+        ["edge", "Edge Impulse"],
+        ["bricklink", "BrickLink Studio"],
+        ["meshy", "Meshy Help Center"],
+        ["openscad", "OpenSCAD"],
+        ["obico", "Obico"],
+        ["chatgpt", "ChatGPT"]
+      ];
+      for (const [key, name] of resourceNames) {
+        translations.kk["aria_" + key] = name + " — ресми сайтты жаңа қойындыда ашу";
+        translations.ru["aria_" + key] = name + " — открыть официальный сайт в новой вкладке";
+      }
+      const buttons = [...document.querySelectorAll(".lang-btn")];
+      const i18nElements = [...document.querySelectorAll("[data-i18n]")];
+      const ariaElements = [...document.querySelectorAll("[data-i18n-aria]")];
+      function changeLanguage(lang) {
+        if (!Object.prototype.hasOwnProperty.call(translations, lang)) return;
+        const t = translations[lang];
         document.documentElement.lang = lang;
-
-        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(`lang-${lang}`).classList.add('active');
-
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (UI[lang][key]) el.innerHTML = UI[lang][key];
-        });
-
-        renderCards(lang);
-    }
-
-    // Инициализация
-    setLanguage('kk');
-</script>
+        document.title = t.pageTitle;
+        document.querySelector('meta[name="description"]').content = t.metaDescription;
+        document.querySelector('meta[property="og:title"]').content = t.pageTitle;
+        document.querySelector('meta[property="og:description"]').content = t.ogDescription;
+        for (const element of i18nElements) element.textContent = t[element.dataset.i18n];
+        for (const element of ariaElements) element.setAttribute("aria-label", t[element.dataset.i18nAria]);
+        for (const button of buttons) button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
+        try { localStorage.setItem("materials-language", lang); } catch (_) { /* Works in private browsing, too. */ }
+      }
+      for (const button of buttons) button.addEventListener("click", () => changeLanguage(button.dataset.lang));
+      let savedLanguage = "kk";
+      try { savedLanguage = localStorage.getItem("materials-language") || "kk"; } catch (_) { /* Use Kazakh by default. */ }
+      changeLanguage(savedLanguage === "ru" ? "ru" : "kk");
+    })();
+  </script>
 </body>
 </html>
