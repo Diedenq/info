@@ -1,316 +1,657 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="kk">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="light" />
-  <meta name="theme-color" content="#f5f9ff" />
-  <meta name="description" content="Arduino, Wokwi, Edge Impulse, BrickLink Studio, Meshy, OpenSCAD, Obico және ChatGPT: оқу мен жобалауға арналған пайдалы ресми материалдар." />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Материалдар — Пайдаланылған әдебиеттер мен дереккөздер" />
-  <meta property="og:description" content="8 ресми ресурс. Әр карточкадан қажетті сайтқа өте аласыз." />
-  <title>Материалдар | Пайдаланылған әдебиеттер мен дереккөздер</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%231b75d9'/%3E%3Cpath d='M15 18h17q6 0 6 6v27q-5-5-11-5H15zM49 18H38q-6 0-6 6v27q5-5 11-5h6z' fill='none' stroke='white' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E" />
-  <style>
-    :root {
-      --blue: #1975db;
-      --blue-dark: #135aad;
-      --blue-soft: #e5f2ff;
-      --ink: #143158;
-      --muted: #63758d;
-      --line: #e1ebf7;
-      --card: rgba(255,255,255,.89);
-      --shadow: 0 14px 35px rgba(41,93,148,.055), 0 2px 8px rgba(41,93,148,.025);
-      font-synthesis: none;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Материалдар | Материалы</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ffffff, #edf5ff);
+    color: #17365d;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 25px;
+}
+
+/* Переключатель языка */
+
+.language-switch {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.language-switch button {
+    padding: 11px 22px;
+    border: 1px solid #cce1ff;
+    border-radius: 25px;
+    background: white;
+    color: #176dcc;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.language-switch button.active {
+    background: #1976d2;
+    color: white;
+}
+
+.language-switch button:hover {
+    background: #dcecff;
+}
+
+.language-switch button.active:hover {
+    background: #1565c0;
+}
+
+/* Заголовок */
+
+header {
+    text-align: center;
+    padding: 40px 0 25px;
+}
+
+h1 {
+    font-family: Georgia, serif;
+    color: #1976d2;
+    font-size: 46px;
+    letter-spacing: 3px;
+    margin: 0 0 25px;
+}
+
+h2 {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    margin: 0 0 15px;
+}
+
+.subtitle {
+    color: #60758f;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Карточки */
+
+.resources {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 30px;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px;
+    min-height: 125px;
+    background: rgba(255,255,255,0.92);
+    border: 1px solid #e1ecf9;
+    border-radius: 18px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 5px 20px rgba(30, 90, 160, 0.05);
+    transition: 0.25s;
+}
+
+a.card:hover {
+    transform: translateY(-4px);
+    border-color: #9ac7ff;
+    box-shadow: 0 10px 25px rgba(30,90,160,0.13);
+}
+
+.number {
+    min-width: 54px;
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e1efff;
+    color: #1976d2;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.card-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.card h3 {
+    font-family: Georgia, serif;
+    font-size: 23px;
+    margin: 0 0 9px;
+    color: #17365d;
+}
+
+.card p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #63758d;
+    margin: 0 0 8px;
+}
+
+.site {
+    font-size: 13px;
+    color: #1976d2;
+    font-weight: bold;
+}
+
+.card .arrow {
+    color: #1976d2;
+    font-size: 22px;
+}
+
+/* Кнопки приложений */
+
+.store-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.store-buttons a {
+    display: inline-block;
+    padding: 11px 15px;
+    background: #e6f2ff;
+    color: #1767b5;
+    border: 1px solid #bddcff;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.store-buttons a:hover {
+    background: #cce6ff;
+}
+
+/* Подвал */
+
+footer {
+    text-align: center;
+    color: #8293a8;
+    font-size: 13px;
+    padding: 35px 10px;
+}
+
+/* Адаптация под телефон */
+
+@media (max-width: 700px) {
+
+    .container {
+        padding: 16px;
     }
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      color: var(--ink);
-      background:
-        radial-gradient(ellipse 52% 29% at 2% 66%, rgba(197,219,255,.34), transparent 90%),
-        radial-gradient(ellipse 50% 32% at 100% 0%, rgba(215,231,255,.37), transparent 85%),
-        linear-gradient(150deg, #fff 0%, #f8fbff 48%, #f2f7ff 100%);
-      overflow-x: hidden;
+
+    h1 {
+        font-size: 34px;
     }
-    a { color: inherit; }
-    .page { position: relative; isolation: isolate; min-height: 100vh; overflow: hidden; }
-    .network { position:absolute; pointer-events:none; z-index:-1; opacity:.74; color:#a6c7fc; }
-    .network.top-left { width:270px; left:-74px; top:-69px; }
-    .network.top-right { width:370px; right:-62px; top:-115px; transform:rotate(16deg); opacity:.52; }
-    .network.bottom-left { width:390px; left:-176px; bottom:-213px; transform:rotate(18deg); opacity:.48; }
-    .network.bottom-right { width:390px; right:-155px; bottom:-228px; transform:rotate(-21deg); opacity:.58; }
-    .container { width:min(1152px, calc(100% - 64px)); margin-inline:auto; }
-    .hero { padding-top:54px; text-align:center; position:relative; }
-    .lang-switch {
-      position:absolute; top:3px; right:0; z-index:2;
-      display:inline-flex; gap:3px; align-items:center; padding:5px;
-      border:1px solid #d9eafa; background:rgba(255,255,255,.88);
-      border-radius:999px; box-shadow:0 7px 22px rgba(47,96,152,.075);
+
+    h2 {
+        font-size: 25px;
     }
-    .lang-switch-icon { width:17px; height:17px; margin:0 5px 0 8px; color:#5c86b5; flex:0 0 auto; }
-    .lang-btn {
-      min-width:54px; min-height:36px; padding:7px 11px;
-      border:0; border-radius:999px; cursor:pointer;
-      color:#607d9d; background:transparent;
-      font:750 12px/1 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-      letter-spacing:.035em; transition:background .18s ease,color .18s ease,box-shadow .18s ease;
+
+    .subtitle {
+        font-size: 15px;
     }
-    .lang-btn[aria-pressed="true"] { background:#1975db; color:white; box-shadow:0 3px 9px rgba(25,117,219,.20); }
-    .lang-btn:hover:not([aria-pressed="true"]) { background:#ebf4ff; color:#145a9a; }
-    .lang-btn:focus-visible { outline:3px solid #69aafa; outline-offset:3px; }
-    .eyebrow { display:inline-flex; align-items:center; gap:9px; font-size:11px; font-weight:750; letter-spacing:.17em; color:var(--blue); text-transform:uppercase; }
-    .eyebrow::before,.eyebrow::after { content:""; width:22px; height:1px; background:#a3c9f4; }
-    h1 { margin:15px 0 0; color:#2379d5; font-family:Georgia,"Times New Roman",serif; font-size:clamp(38px, 5.3vw, 64px); line-height:1.1; letter-spacing:.095em; font-weight:700; text-shadow:0 1px 0 #fff; }
-    .hero-intro { position:relative; margin-top:36px; padding-right:155px; text-align:left; }
-    h2 { max-width:850px; margin:0; font-family:Georgia,"Times New Roman",serif; font-size:clamp(26px, 3.5vw, 43px); letter-spacing:-.025em; line-height:1.25; font-weight:700; }
-    .description { max-width:900px; margin:13px 0 0; font-size:clamp(15px, 1.7vw, 20px); color:var(--muted); line-height:1.65; }
-    .robot { position:absolute; width:178px; height:169px; right:-16px; bottom:-15px; pointer-events:none; filter:drop-shadow(0 10px 14px rgba(25,89,170,.12)); }
-    .main-section { padding-top:32px; }
-    .section-bar { display:flex; align-items:center; gap:12px; justify-content:space-between; margin-bottom:16px; }
-    .section-kicker { font-size:12px; font-weight:750; color:#6b89aa; letter-spacing:.105em; text-transform:uppercase; }
-    .pill { border:1px solid #d9eafa; color:#4b78a6; background:rgba(234,244,255,.75); border-radius:999px; padding:7px 12px; font-size:12px; font-weight:700; white-space:nowrap; }
-    .resources { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); grid-template-rows:repeat(4, minmax(154px, auto)); grid-auto-flow:column; gap:17px 20px; }
-    .resource {
-      position:relative; display:flex; min-height:154px; align-items:center; gap:19px;
-      padding:22px 22px 20px 23px; border-radius:20px; text-decoration:none;
-      background:var(--card); border:1px solid rgba(219,232,249,.97); box-shadow:var(--shadow);
-      transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,background .22s ease;
+
+    .resources {
+        grid-template-columns: 1fr;
+        gap: 12px;
     }
-    .resource::before { content:""; position:absolute; top:17px; bottom:17px; left:0; width:3px; background:linear-gradient(180deg,transparent,#419bf1,transparent); border-radius:3px; opacity:0; transition:opacity .22s; }
-    .resource:hover { transform:translateY(-4px); border-color:#bfdcff; background:#fff; box-shadow:0 17px 35px rgba(44,101,169,.11); }
-    .resource:hover::before { opacity:1; }
-    .resource:focus-visible { outline:3px solid var(--blue); outline-offset:4px; background:#fff; }
-    .number { flex:0 0 55px; width:55px; height:55px; display:grid; place-items:center; border:1px solid #d9ecff; border-radius:50%; background:linear-gradient(135deg,#e9f4ff,#d8eaff); color:#1674dc; font-family:Georgia,"Times New Roman",serif; font-size:17px; font-weight:700; }
-    .resource-content { min-width:0; width:100%; }
-    .resource-heading { display:flex; align-items:center; gap:8px; justify-content:space-between; }
-    h3 { margin:0; font-family:Georgia,"Times New Roman",serif; font-size:clamp(18px,2.0vw,26px); line-height:1.2; letter-spacing:-.012em; font-weight:700; }
-    .arrow { flex:0 0 auto; width:31px; height:31px; display:grid; place-items:center; border-radius:9px; border:1px solid #e0efff; color:#277ace; background:#f0f7ff; transition:transform .22s ease,background .22s ease; }
-    .resource:hover .arrow { background:#e0efff; transform:translate(2px,-2px); }
-    .arrow svg { width:17px; height:17px; }
-    .resource-description { margin:7px 0 10px; color:#5f7189; font-size:15px; line-height:1.55; }
-    .domain { display:flex; align-items:center; gap:7px; font-size:12px; font-weight:700; color:#4385c8; overflow-wrap:anywhere; }
-    .domain svg { width:13px; height:13px; flex:0 0 auto; opacity:.8; }
-    .footer { display:flex; gap:24px; justify-content:space-between; align-items:center; padding:31px 0 39px; color:#758ba5; font-size:12px; line-height:1.6; }
-    .footer-note { display:flex; gap:9px; align-items:flex-start; }
-    .footer-note svg { width:17px; height:17px; flex:0 0 auto; margin-top:1px; color:#4d99e4; }
-    .footer-copy { text-align:right; }
-    @media (max-width: 850px) {
-      .hero-intro { padding-right:120px; }
-      .robot { width:135px; right:-18px; bottom:5px; }
-      .resource { gap:14px; padding:19px 17px; min-height:159px; }
-      .number { width:47px; height:47px; flex-basis:47px; font-size:15px; }
-      .resources { gap:14px; }
-      .resource-description { font-size:14px; }
-      h3 { font-size:20px; }
+
+    .card {
+        padding: 18px;
+        min-height: 110px;
+        gap: 14px;
     }
-    @media (max-width: 690px) {
-      .container { width:min(540px, calc(100% - 32px)); }
-      .hero { padding-top:100px; }
-      .lang-switch { top:24px; right:0; }
-      h1 { margin-top:13px; font-size:clamp(34px,8.1vw,48px); letter-spacing:.06em; }
-      .hero-intro { margin-top:29px; padding-right:0; text-align:center; }
-      h2 { font-size:clamp(26px,6.5vw,36px); }
-      .description { margin-top:13px; font-size:15px; }
-      .robot { display:none; }
-      .main-section { padding-top:31px; }
-      .resources { grid-template-columns:1fr; grid-template-rows:none; grid-auto-flow:row; gap:12px; }
-      .resource { min-height:130px; border-radius:17px; padding:18px 17px; gap:14px; }
-      .number { width:49px; height:49px; flex-basis:49px; }
-      h3 { font-size:21px; }
-      .resource-description { font-size:14px; margin:7px 0 7px; }
-      .footer { padding:26px 0 36px; flex-direction:column; align-items:flex-start; gap:10px; }
-      .footer-copy { text-align:left; }
-      .network.top-right { right:-180px; }
+
+    .card h3 {
+        font-size: 20px;
     }
-    @media (max-width: 360px) {
-      .container { width:calc(100% - 24px); }
-      .resource { gap:11px; padding:16px 12px; }
-      .number { width:42px; height:42px; flex-basis:42px; }
-      .arrow { width:27px; height:27px; }
-      h3 { font-size:19px; }
-      .section-kicker { font-size:11px; }
-      .pill { font-size:11px; }
+
+    .card p {
+        font-size: 14px;
     }
-    @media (prefers-reduced-motion:reduce) {
-      html { scroll-behavior:auto; }
-      .resource,.resource::before,.arrow,.lang-btn { transition:none; }
+
+    .number {
+        min-width: 45px;
+        width: 45px;
+        height: 45px;
     }
-  </style>
+
+    header {
+        padding-top: 35px;
+    }
+}
+</style>
 </head>
+
 <body>
-  <div class="page">
-    <svg class="network top-left" aria-hidden="true" viewBox="0 0 300 260" fill="none" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" stroke-width="1"><path d="M-10 91 70 12l77 32 74-69M6 162 74 83l74 35 71-42 69 29M-12 214l78-55 88 35 55-73 82 51M70 12l4 71-8 76 88 35M147 44l1 74 61 3M219 76l2-101M209 121l79-16"/></g><g fill="#9cbffa"><circle cx="70" cy="12" r="5"/><circle cx="74" cy="83" r="5"/><circle cx="66" cy="159" r="4"/><circle cx="147" cy="44" r="5"/><circle cx="148" cy="118" r="4"/><circle cx="154" cy="194" r="6"/><circle cx="209" cy="121" r="5"/><circle cx="219" cy="76" r="4"/><circle cx="288" cy="105" r="4"/></g></svg>
-    <svg class="network top-right" aria-hidden="true" viewBox="0 0 300 260" fill="none" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" stroke-width="1"><path d="M-10 91 70 12l77 32 74-69M6 162 74 83l74 35 71-42 69 29M-12 214l78-55 88 35 55-73 82 51M70 12l4 71-8 76 88 35M147 44l1 74 61 3M219 76l2-101M209 121l79-16"/></g><g fill="#9cbffa"><circle cx="70" cy="12" r="5"/><circle cx="74" cy="83" r="5"/><circle cx="66" cy="159" r="4"/><circle cx="147" cy="44" r="5"/><circle cx="148" cy="118" r="4"/><circle cx="154" cy="194" r="6"/><circle cx="209" cy="121" r="5"/><circle cx="219" cy="76" r="4"/><circle cx="288" cy="105" r="4"/></g></svg>
-    <svg class="network bottom-left" aria-hidden="true" viewBox="0 0 300 260" fill="none" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" stroke-width="1"><path d="M-10 91 70 12l77 32 74-69M6 162 74 83l74 35 71-42 69 29M-12 214l78-55 88 35 55-73 82 51M70 12l4 71-8 76 88 35M147 44l1 74 61 3M219 76l2-101M209 121l79-16"/></g><g fill="#9cbffa"><circle cx="70" cy="12" r="5"/><circle cx="74" cy="83" r="5"/><circle cx="66" cy="159" r="4"/><circle cx="147" cy="44" r="5"/><circle cx="148" cy="118" r="4"/><circle cx="154" cy="194" r="6"/><circle cx="209" cy="121" r="5"/><circle cx="219" cy="76" r="4"/><circle cx="288" cy="105" r="4"/></g></svg>
-    <svg class="network bottom-right" aria-hidden="true" viewBox="0 0 300 260" fill="none" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" stroke-width="1"><path d="M-10 91 70 12l77 32 74-69M6 162 74 83l74 35 71-42 69 29M-12 214l78-55 88 35 55-73 82 51M70 12l4 71-8 76 88 35M147 44l1 74 61 3M219 76l2-101M209 121l79-16"/></g><g fill="#9cbffa"><circle cx="70" cy="12" r="5"/><circle cx="74" cy="83" r="5"/><circle cx="66" cy="159" r="4"/><circle cx="147" cy="44" r="5"/><circle cx="148" cy="118" r="4"/><circle cx="154" cy="194" r="6"/><circle cx="209" cy="121" r="5"/><circle cx="219" cy="76" r="4"/><circle cx="288" cy="105" r="4"/></g></svg>
-    <header class="hero container">
-      <div class="lang-switch" role="group" aria-label="Тілді таңдау / Выбор языка">
-        <svg class="lang-switch-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
-        <button class="lang-btn" type="button" data-lang="kk" aria-pressed="true" aria-label="Қазақ тілін таңдау" title="Қазақша">ҚАЗ</button>
-        <button class="lang-btn" type="button" data-lang="ru" aria-pressed="false" aria-label="Выбрать русский язык" title="Русский">РУС</button>
-      </div>
-      <span class="eyebrow" data-i18n="eyebrow">Білім • Технология • Жобалау</span>
-      <h1 data-i18n="title">МАТЕРИАЛДАР</h1>
-      <div class="hero-intro">
-        <h2 data-i18n="subtitle">Пайдаланылған әдебиеттер мен дереккөздер</h2>
-        <p class="description" data-i18n="intro">Өз бетімен жұмыс істеуге арналған ресми құжаттама және анықтамалық материалдар.</p>
-        <svg class="robot" viewBox="0 0 210 190" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <defs>
-            <linearGradient id="head" x1=".2" y1="0" x2=".9" y2="1"><stop stop-color="#fff"/><stop offset=".53" stop-color="#d6e8f8"/><stop offset="1" stop-color="#8faed2"/></linearGradient>
-            <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7cb8ff"/><stop offset="1" stop-color="#1e64c2"/></linearGradient>
-            <linearGradient id="body" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f6faff"/><stop offset="1" stop-color="#9dbee0"/></linearGradient>
-          </defs>
-          <ellipse cx="112" cy="174" rx="77" ry="9" fill="#97b8e3" opacity=".2"/>
-          <path d="M74 122c-9 8-12 24-7 36 13 14 69 17 90 2 6-13 2-29-9-39z" fill="url(#body)" stroke="#90b2d6" stroke-width="2"/>
-          <path d="M73 134 37 123l-7 26 44 20 21-16z" fill="url(#blue)" stroke="#508acb" stroke-width="2"/>
-          <path d="M98 139 148 128l29 20-51 22z" fill="#286ec5" stroke="#1e559e" stroke-width="2"/>
-          <path d="M74 134 102 151l24 19-28-9-30-17z" fill="#9ecbff" opacity=".9"/>
-          <path d="M98 139 110 154l16 16-27-9-25-27z" fill="#d8ebff"/>
-          <circle cx="155" cy="138" r="12" fill="url(#head)" stroke="#80a3c7" stroke-width="2"/>
-          <circle cx="160" cy="136" r="4" fill="#2474ce"/>
-          <path d="M64 129c-12 3-15 12-16 22" stroke="#739ac4" stroke-width="11" stroke-linecap="round"/>
-          <circle cx="47" cy="153" r="10" fill="url(#head)" stroke="#8aabcf" stroke-width="2"/>
-          <path d="M104 24v-13" stroke="#6b91b9" stroke-width="4" stroke-linecap="round"/>
-          <circle cx="104" cy="9" r="6" fill="#3b8de6" stroke="#b0d6fc" stroke-width="2"/>
-          <rect x="50" y="24" width="110" height="100" rx="45" fill="url(#head)" stroke="#7fa7cc" stroke-width="2.3"/>
-          <rect x="41" y="58" width="17" height="34" rx="8" fill="url(#blue)" stroke="#5d8bc2" stroke-width="2"/>
-          <rect x="152" y="58" width="17" height="34" rx="8" fill="url(#blue)" stroke="#5d8bc2" stroke-width="2"/>
-          <ellipse cx="84" cy="74" rx="22" ry="24" fill="#f8fcff" stroke="#3a81cb" stroke-width="5"/>
-          <ellipse cx="129" cy="74" rx="22" ry="24" fill="#f8fcff" stroke="#3a81cb" stroke-width="5"/>
-          <path d="M106 73h2" stroke="#3a81cb" stroke-width="5" stroke-linecap="round"/>
-          <ellipse cx="87" cy="75" rx="8" ry="12" fill="#153763"/>
-          <ellipse cx="127" cy="75" rx="8" ry="12" fill="#153763"/>
-          <circle cx="90" cy="70" r="3.5" fill="white"/>
-          <circle cx="130" cy="70" r="3.5" fill="white"/>
-          <path d="M100 103q8 8 17 0" fill="none" stroke="#517ca8" stroke-width="3" stroke-linecap="round"/>
-          <circle cx="64" cy="98" r="5" fill="#f3a2b4" opacity=".45"/>
-          <circle cx="146" cy="98" r="5" fill="#f3a2b4" opacity=".45"/>
-          <path d="M68 33q-13 11-15 23" fill="none" stroke="white" stroke-width="5" stroke-linecap="round" opacity=".8"/>
-        </svg>
-      </div>
-    </header>
-    <main class="container main-section">
-      <div class="section-bar"><span class="section-kicker" data-i18n="links">Пайдалы сілтемелер</span><span class="pill" data-i18n="count">8 ресурс</span></div>
-      <section class="resources" aria-label="Оқу мен жобалауға арналған 8 ресми ресурс" data-i18n-aria="sectionLabel">
-        <a class="resource" href="https://docs.arduino.cc/" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria_arduino" aria-label="Arduino Documentation — ресми сайтты жаңа қойындыда ашу">
-          <span class="number" aria-hidden="true">01</span><div class="resource-content"><div class="resource-heading"><h3>Arduino Documentation</h3><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><p class="resource-description" data-i18n="res_arduino">TinyML тәжірибесі және Nano 33 BLE Sense-пен жұмыс</p><span class="domain">docs.arduino.cc</span></div>
-        </a>
-        <a class="resource" href="https://docs.wokwi.com/" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria_wokwi" aria-label="Wokwi Docs — ресми сайтты жаңа қойындыда ашу">
-          <span class="number" aria-hidden="true">02</span><div class="resource-content"><div class="resource-heading"><h3>Wokwi Docs</h3><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><p class="resource-description" data-i18n="res_wokwi">Микроконтроллерлер, датчиктер және сызбалар симуляторы</p><span class="domain">docs.wokwi.com</span></div>
-        </a>
-        <a class="resource" href="https://docs.edgeimpulse.com/docs" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria_edge" aria-label="Edge Impulse — ресми сайтты жаңа қойындыда ашу">
-          <span class="number" aria-hidden="true">03</span><div class="resource-content"><div class="resource-heading"><h3>Edge Impulse</h3><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><p class="resource-description" data-i18n="res_edge">Ендірілген ЖИ-ді үйрету және құрылғыға енгізу</p><span class="domain">docs.edgeimpulse.com</span></div>
-        </a>
-        <a class="resource" href="https://www.bricklink.com/v3/studio/download.page" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria_bricklink" aria-label="BrickLink Studio — ресми сайтты жаңа қойындыда ашу">
-          <span class="number" aria-hidden="true">04</span><div class="resource-content"><div class="resource-heading"><h3>BrickLink Studio</h3><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><p class="resource-description" data-i18n="res_bricklink">LEGO құрылымдарын цифрлық жобалау</p><span class="domain">bricklink.com</span></div>
-        </a>
-        <a class="resource" href="https://help.meshy.ai/ru/" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria_meshy" aria-label="Meshy Help Center — ресми сайтты жаңа қойындыда ашу">
-          <span class="number" aria-hidden="true">05</span><div class="resource-content"><div class="resource-heading"><h3>Meshy Help Center</h3><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><p class="resource-description" data-i18n="res_meshy">Мәтіннен 3D-модель жасау, дайындау және экспорттау</p><span class="domain">help.meshy.ai</span></div>
-        </a>
-        <a class="resource" href="https://openscad.org/documentation" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria_openscad" aria-label="OpenSCAD — ресми сайтты жаңа қойындыда ашу">
-          <span class="number" aria-hidden="true">06</span><div class="resource-content"><div class="resource-heading"><h3>OpenSCAD</h3><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><p class="resource-description" data-i18n="res_openscad">Бағдарламалық параметрлік 3D-модельдеу</p><span class="domain">openscad.org</span></div>
-        </a>
-        <a class="resource" href="https://www.obico.io/failure-detection.html" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria_obico" aria-label="Obico — ресми сайтты жаңа қойындыда ашу">
-          <span class="number" aria-hidden="true">07</span><div class="resource-content"><div class="resource-heading"><h3>Obico</h3><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><p class="resource-description" data-i18n="res_obico">3D-басып шығарудағы ақауларды ЖИ арқылы анықтау</p><span class="domain">obico.io</span></div>
-        </a>
-        <a class="resource" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria_chatgpt" aria-label="ChatGPT — ресми сайтты жаңа қойындыда ашу">
-          <span class="number" aria-hidden="true">08</span><div class="resource-content"><div class="resource-heading"><h3>ChatGPT</h3><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><p class="resource-description" data-i18n="res_chatgpt">Идеялар, түсіндірулер және код жазуға көмек</p><span class="domain">chatgpt.com</span></div>
-        </a>
-      </section>
-    </main>
-    <footer class="footer container">
-      <span class="footer-note"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v.01"/></svg><span data-i18n="footerNote">Қажетті ресурсты ашу үшін карточканы басыңыз. Сілтемелер жаңа қойындыда ашылады.</span></span>
-      <span class="footer-copy" data-i18n="footerCopy">Оқу және тәжірибелік жұмыс үшін</span>
-    </footer>
-  </div>
-  <script>
-    (() => {
-      "use strict";
-      const translations = {
-        kk: {
-          pageTitle: "Материалдар | Пайдаланылған әдебиеттер мен дереккөздер",
-          metaDescription: "Arduino, Wokwi, Edge Impulse, BrickLink Studio, Meshy, OpenSCAD, Obico және ChatGPT: оқу мен жобалауға арналған пайдалы ресми материалдар.",
-          ogDescription: "8 ресми ресурс. Әр карточкадан қажетті сайтқа өте аласыз.",
-          eyebrow: "Білім • Технология • Жобалау",
-          title: "МАТЕРИАЛДАР",
-          subtitle: "Пайдаланылған әдебиеттер мен дереккөздер",
-          intro: "Өз бетімен жұмыс істеуге арналған ресми құжаттама және анықтамалық материалдар.",
-          links: "Пайдалы сілтемелер",
-          count: "8 ресурс",
-          sectionLabel: "Оқу мен жобалауға арналған 8 ресми ресурс",
-          res_arduino: "TinyML тәжірибесі және Nano 33 BLE Sense-пен жұмыс",
-          res_wokwi: "Микроконтроллерлер, датчиктер және сызбалар симуляторы",
-          res_edge: "Ендірілген ЖИ-ді үйрету және құрылғыға енгізу",
-          res_bricklink: "LEGO құрылымдарын цифрлық жобалау",
-          res_meshy: "Мәтіннен 3D-модель жасау, дайындау және экспорттау",
-          res_openscad: "Бағдарламалық параметрлік 3D-модельдеу",
-          res_obico: "3D-басып шығарудағы ақауларды ЖИ арқылы анықтау",
-          res_chatgpt: "Идеялар, түсіндірулер және код жазуға көмек",
-          footerNote: "Қажетті ресурсты ашу үшін карточканы басыңыз. Сілтемелер жаңа қойындыда ашылады.",
-          footerCopy: "Оқу және тәжірибелік жұмыс үшін"
-        },
-        ru: {
-          pageTitle: "Материалы | Использованная литература и источники",
-          metaDescription: "Полезные официальные материалы для обучения и проектирования: Arduino, Wokwi, Edge Impulse, BrickLink Studio, Meshy, OpenSCAD, Obico и ChatGPT.",
-          ogDescription: "8 официальных ресурсов. Перейти на нужный сайт можно из любой карточки.",
-          eyebrow: "Образование • Технологии • Проектирование",
-          title: "МАТЕРИАЛЫ",
-          subtitle: "Использованная литература и источники",
-          intro: "Официальная документация и справочные материалы для самостоятельной работы.",
-          links: "Полезные ссылки",
-          count: "8 ресурсов",
-          sectionLabel: "8 официальных ресурсов для обучения и проектирования",
-          res_arduino: "Эксперименты с TinyML и работа с Nano 33 BLE Sense",
-          res_wokwi: "Симулятор микроконтроллеров, датчиков и электрических схем",
-          res_edge: "Обучение моделей встроенного ИИ и развёртывание на устройствах",
-          res_bricklink: "Цифровое проектирование конструкций LEGO",
-          res_meshy: "Создание, подготовка и экспорт 3D-моделей по текстовому описанию",
-          res_openscad: "Параметрическое 3D-моделирование с помощью кода",
-          res_obico: "Обнаружение дефектов 3D-печати с помощью ИИ",
-          res_chatgpt: "Помощь с идеями, объяснениями и написанием кода",
-          footerNote: "Нажмите на карточку, чтобы открыть ресурс. Ссылки откроются в новой вкладке.",
-          footerCopy: "Для обучения и практической работы"
-        }
-      };
-      const resourceNames = [
-        ["arduino", "Arduino Documentation"],
-        ["wokwi", "Wokwi Docs"],
-        ["edge", "Edge Impulse"],
-        ["bricklink", "BrickLink Studio"],
-        ["meshy", "Meshy Help Center"],
-        ["openscad", "OpenSCAD"],
-        ["obico", "Obico"],
-        ["chatgpt", "ChatGPT"]
-      ];
-      for (const [key, name] of resourceNames) {
-        translations.kk["aria_" + key] = name + " — ресми сайтты жаңа қойындыда ашу";
-        translations.ru["aria_" + key] = name + " — открыть официальный сайт в новой вкладке";
-      }
-      const buttons = [...document.querySelectorAll(".lang-btn")];
-      const i18nElements = [...document.querySelectorAll("[data-i18n]")];
-      const ariaElements = [...document.querySelectorAll("[data-i18n-aria]")];
-      function changeLanguage(lang) {
-        if (!Object.prototype.hasOwnProperty.call(translations, lang)) return;
-        const t = translations[lang];
-        document.documentElement.lang = lang;
-        document.title = t.pageTitle;
-        document.querySelector('meta[name="description"]').content = t.metaDescription;
-        document.querySelector('meta[property="og:title"]').content = t.pageTitle;
-        document.querySelector('meta[property="og:description"]').content = t.ogDescription;
-        for (const element of i18nElements) element.textContent = t[element.dataset.i18n];
-        for (const element of ariaElements) element.setAttribute("aria-label", t[element.dataset.i18nAria]);
-        for (const button of buttons) button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
-        try { localStorage.setItem("materials-language", lang); } catch (_) { /* Works in private browsing, too. */ }
-      }
-      for (const button of buttons) button.addEventListener("click", () => changeLanguage(button.dataset.lang));
-      let savedLanguage = "kk";
-      try { savedLanguage = localStorage.getItem("materials-language") || "kk"; } catch (_) { /* Use Kazakh by default. */ }
-      changeLanguage(savedLanguage === "ru" ? "ru" : "kk");
-    })();
-  </script>
+
+<div class="container">
+
+<!-- ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА -->
+
+<div class="language-switch">
+
+<button
+    id="btn-kk"
+    class="active"
+    onclick="changeLanguage('kk')">
+    ҚАЗ
+</button>
+
+<button
+    id="btn-ru"
+    onclick="changeLanguage('ru')">
+    РУС
+</button>
+
+</div>
+
+<!-- ЗАГОЛОВОК -->
+
+<header>
+
+<h1
+data-kk="МАТЕРИАЛДАР"
+data-ru="МАТЕРИАЛЫ">
+МАТЕРИАЛДАР
+</h1>
+
+<h2
+data-kk="Пайдаланылған әдебиеттер мен дереккөздер"
+data-ru="Использованная литература и источники">
+Пайдаланылған әдебиеттер мен дереккөздер
+</h2>
+
+<p class="subtitle"
+data-kk="Өз бетімен жұмыс істеуге арналған ресми құжаттама және анықтамалық материалдар."
+data-ru="Официальная документация и справочные материалы для самостоятельной работы.">
+Өз бетімен жұмыс істеуге арналған ресми құжаттама және анықтамалық материалдар.
+</p>
+
+</header>
+
+<!-- РЕСУРСЫ -->
+
+<main class="resources">
+
+<!-- 01 ARDUINO -->
+
+<a class="card"
+href="https://docs.arduino.cc/"
+target="_blank"
+rel="noopener noreferrer">
+
+<div class="number">01</div>
+
+<div class="card-content">
+
+<h3>Arduino Documentation</h3>
+
+<p
+data-kk="TinyML тәжірибесі және Nano 33 BLE Sense-пен жұмыс"
+data-ru="Эксперименты с TinyML и работа с Nano 33 BLE Sense">
+TinyML тәжірибесі және Nano 33 BLE Sense-пен жұмыс
+</p>
+
+<span class="site">docs.arduino.cc</span>
+
+</div>
+
+<span class="arrow">↗</span>
+
+</a>
+
+<!-- 02 WOKWI -->
+
+<a class="card"
+href="https://docs.wokwi.com/"
+target="_blank"
+rel="noopener noreferrer">
+
+<div class="number">02</div>
+
+<div class="card-content">
+
+<h3>Wokwi Docs</h3>
+
+<p
+data-kk="Микроконтроллерлер, датчиктер және сызбалар симуляторы"
+data-ru="Симулятор микроконтроллеров, датчиков и электрических схем">
+Микроконтроллерлер, датчиктер және сызбалар симуляторы
+</p>
+
+<span class="site">docs.wokwi.com</span>
+
+</div>
+
+<span class="arrow">↗</span>
+
+</a>
+
+<!-- 03 EDGE IMPULSE -->
+
+<a class="card"
+href="https://docs.edgeimpulse.com/docs"
+target="_blank"
+rel="noopener noreferrer">
+
+<div class="number">03</div>
+
+<div class="card-content">
+
+<h3>Edge Impulse</h3>
+
+<p
+data-kk="Ендірілген ЖИ-ді үйрету және құрылғыға енгізу"
+data-ru="Обучение моделей встроенного ИИ и развёртывание на устройствах">
+Ендірілген ЖИ-ді үйрету және құрылғыға енгізу
+</p>
+
+<span class="site">docs.edgeimpulse.com</span>
+
+</div>
+
+<span class="arrow">↗</span>
+
+</a>
+
+<!-- 04 BRICKLINK -->
+
+<a class="card"
+href="https://www.bricklink.com/v3/studio/download.page"
+target="_blank"
+rel="noopener noreferrer">
+
+<div class="number">04</div>
+
+<div class="card-content">
+
+<h3>BrickLink Studio</h3>
+
+<p
+data-kk="LEGO құрылымдарын цифрлық жобалау"
+data-ru="Цифровое проектирование конструкций LEGO">
+LEGO құрылымдарын цифрлық жобалау
+</p>
+
+<span class="site">bricklink.com</span>
+
+</div>
+
+<span class="arrow">↗</span>
+
+</a>
+
+<!-- 05 MESHY -->
+
+<a class="card"
+href="https://help.meshy.ai/ru/"
+target="_blank"
+rel="noopener noreferrer">
+
+<div class="number">05</div>
+
+<div class="card-content">
+
+<h3>Meshy Help Center</h3>
+
+<p
+data-kk="Мәтіннен 3D-модель жасау, дайындау және экспорттау"
+data-ru="Создание, подготовка и экспорт 3D-моделей по текстовому описанию">
+Мәтіннен 3D-модель жасау, дайындау және экспорттау
+</p>
+
+<span class="site">help.meshy.ai</span>
+
+</div>
+
+<span class="arrow">↗</span>
+
+</a>
+
+<!-- 06 OPENSCAD -->
+
+<a class="card"
+href="https://openscad.org/documentation"
+target="_blank"
+rel="noopener noreferrer">
+
+<div class="number">06</div>
+
+<div class="card-content">
+
+<h3>OpenSCAD</h3>
+
+<p
+data-kk="Бағдарламалық параметрлік 3D-модельдеу"
+data-ru="Параметрическое 3D-моделирование с помощью кода">
+Бағдарламалық параметрлік 3D-модельдеу
+</p>
+
+<span class="site">openscad.org</span>
+
+</div>
+
+<span class="arrow">↗</span>
+
+</a>
+
+<!-- 07 OBICO -->
+
+<a class="card"
+href="https://www.obico.io/failure-detection.html"
+target="_blank"
+rel="noopener noreferrer">
+
+<div class="number">07</div>
+
+<div class="card-content">
+
+<h3>Obico</h3>
+
+<p
+data-kk="3D-басып шығарудағы ақауларды ЖИ арқылы анықтау"
+data-ru="Обнаружение дефектов 3D-печати с помощью ИИ">
+3D-басып шығарудағы ақауларды ЖИ арқылы анықтау
+</p>
+
+<span class="site">obico.io</span>
+
+</div>
+
+<span class="arrow">↗</span>
+
+</a>
+
+<!-- 08 CHATGPT -->
+
+<a class="card"
+href="https://chatgpt.com/"
+target="_blank"
+rel="noopener noreferrer">
+
+<div class="number">08</div>
+
+<div class="card-content">
+
+<h3>ChatGPT</h3>
+
+<p
+data-kk="Идеялар, түсіндірулер және код жазуға көмек"
+data-ru="Помощь с идеями, объяснениями и написанием кода">
+Идеялар, түсіндірулер және код жазуға көмек
+</p>
+
+<span class="site">chatgpt.com</span>
+
+</div>
+
+<span class="arrow">↗</span>
+
+</a>
+
+<!-- 09 OLLAMA -->
+
+<a class="card"
+href="https://ollama.com/"
+target="_blank"
+rel="noopener noreferrer">
+
+<div class="number">09</div>
+
+<div class="card-content">
+
+<h3>Ollama</h3>
+
+<p
+data-kk="Жасанды интеллект модельдерін компьютерде жергілікті іске қосу"
+data-ru="Локальный запуск моделей искусственного интеллекта на компьютере">
+Жасанды интеллект модельдерін компьютерде жергілікті іске қосу
+</p>
+
+<span class="site">ollama.com</span>
+
+</div>
+
+<span class="arrow">↗</span>
+
+</a>
+
+<!-- 10 GOOGLE AI EDGE GALLERY -->
+
+<div class="card">
+
+<div class="number">10</div>
+
+<div class="card-content">
+
+<h3>Google AI Edge Gallery</h3>
+
+<p
+data-kk="ЖИ модельдерін Android пен iPhone құрылғыларында интернетсіз іске қосу"
+data-ru="Запуск моделей искусственного интеллекта на Android и iPhone, в том числе без интернета">
+ЖИ модельдерін Android пен iPhone құрылғыларында интернетсіз іске қосу
+</p>
+
+<div class="store-buttons">
+
+<a
+href="https://play.google.com/store/apps/details?id=com.google.ai.edge.gallery"
+target="_blank"
+rel="noopener noreferrer">
+📱 Android · Google Play
+</a>
+
+<a
+href="https://apps.apple.com/app/google-ai-edge-gallery/id6749645337"
+target="_blank"
+rel="noopener noreferrer">
+🍎 iPhone · App Store
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+<!-- ПОДВАЛ -->
+
+<footer>
+
+<p
+data-kk="Ресурсты ашу үшін қажетті карточканы басыңыз."
+data-ru="Нажмите на нужную карточку, чтобы открыть ресурс.">
+Ресурсты ашу үшін қажетті карточканы басыңыз.
+</p>
+
+<p
+data-kk="Оқу және тәжірибелік жұмыс үшін"
+data-ru="Для обучения и практической работы">
+Оқу және тәжірибелік жұмыс үшін
+</p>
+
+</footer>
+
+</div>
+
+<!-- ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА -->
+
+<script>
+
+function changeLanguage(lang) {
+
+    // Меняем язык страницы
+    document.documentElement.lang = lang;
+
+    // Переводим все элементы
+    const elements = document.querySelectorAll(
+        "[data-kk][data-ru]"
+    );
+
+    elements.forEach(element => {
+
+        element.textContent =
+            element.getAttribute("data-" + lang);
+
+    });
+
+    // Переключаем активную кнопку
+    document.getElementById("btn-kk")
+        .classList.toggle("active", lang === "kk");
+
+    document.getElementById("btn-ru")
+        .classList.toggle("active", lang === "ru");
+
+    // Сохраняем выбранный язык
+    try {
+        localStorage.setItem("siteLanguage", lang);
+    } catch (error) {
+        // Страница работает и без сохранения
+    }
+
+}
+
+// Восстанавливаем язык при открытии сайта
+let savedLanguage = "kk";
+
+try {
+    savedLanguage =
+        localStorage.getItem("siteLanguage") || "kk";
+} catch (error) {
+    savedLanguage = "kk";
+}
+
+changeLanguage(
+    savedLanguage === "ru" ? "ru" : "kk"
+);
+
+</script>
+
 </body>
 </html>
